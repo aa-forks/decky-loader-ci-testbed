@@ -32,8 +32,8 @@ jobs:
       (inputs.os == 'Linux' && inputs.arch == 'arm64' && 'ubuntu-26.04-arm') || 
       (inputs.os == 'Linux' && inputs.arch == 'x86_64' && 'ubuntu-26.04') ||
       (inputs.os == 'macOS' && inputs.arch == 'arm64' && 'xcode-27') || 
-      (inputs.os == 'Windows' && inputs.arch == 'arm64' && 'windows-11-vs2026-arm64') ||
-      (inputs.os == 'Windows' && inputs.arch == 'x86_64' && 'windows-2025-vs2026')
+      (inputs.os == 'Windows' && inputs.arch == 'arm64' && 'windows-11-arm') ||
+      (inputs.os == 'Windows' && inputs.arch == 'x86_64' && 'windows-2025')
        }}
     defaults:
       run:
