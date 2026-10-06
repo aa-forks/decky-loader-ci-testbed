@@ -46,7 +46,7 @@ jobs:
       id: latest_release
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        repository: "SteamDeckHomebrew/decky-loader"
+        repository: ${{ github.repository }}
         type: "nodraft"
 
     - name: Prepare tag ⚙️
