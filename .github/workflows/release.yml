@@ -150,19 +150,36 @@ jobs:
     name: Release tagged artifacts
     runs-on: ubuntu-26.04
     needs: [create_tag, build_linux_x86_64, build_linux_arm64, build_win_x86_64, build_win_arm64, build_macos]
-    strategy:
-      matrix:
-        artifact: [default, arm64, win, win-noconsole, win-arm64, win-arm64-noconsole, mac]
     steps:
       - name: Fetch package artifact (${{ matrix.artifact }}) ⬇️
         uses: actions/download-artifact@v8
         with:
-          name: PluginLoader${{ matrix.artifact == 'default' && '' || format('-{0}', matrix.artifact) }}
-          path: ./artifacts/${{ matrix.artifact }}
+          path: ./temp_artifacts
 
       - name: Name release asset (${{ matrix.artifact }}) 🛠️
         run: |
-          mv ./artifacts/${{ matrix.artifact }}/PluginLoade* ./PluginLoader${{ matrix.artifact == 'default' && '' || format('-{0}', matrix.artifact) }}${{ startsWith(matrix.artifact, 'win') && '.exe' || '' }}
+          ARTIFACTS=("default" "arm64" "win" "win-noconsole" "win-arm64" "win-arm64-noconsole" "mac")
+
+          for artifact in "${ARTIFACTS[@]}"; do
+            echo "naming $artifact"
+
+            if [ "$artifact" = "default" ]; then
+              suffix=""
+            else
+              suffix="-$artifact"
+            fi
+
+            # stupid windows
+            if [[ "$artifact" == win* ]]; then
+              ext=".exe"
+            else
+              ext=""
+            fi
+
+            source="./temp_artifacts/PluginLoader$suffix"
+            dest="./PluginLoader$suffix$ext"
+            mv "$source"/PluginLoader$ext "$dest"
+          done
 
       - name: Pre-release 📦
         if: github.event.inputs.release == 'prerelease'
