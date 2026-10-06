@@ -1,4 +1,4 @@
-name: Builder (Linux, x86_64)
+name: Builder (Windows, x86_64)
 
 on:
   push:
@@ -14,6 +14,6 @@ jobs:
     with:
       os: Windows
       arch: x86_64
-      artifact_name: PluginLoader-win${{ matrix.noconsole == true && '-noconsole' }}
+      artifact_name: PluginLoader-win${{ matrix.noconsole == true && '-noconsole' || '' }}
       binary_name: PluginLoader.exe
       noconsole: ${{ matrix.noconsole }}
