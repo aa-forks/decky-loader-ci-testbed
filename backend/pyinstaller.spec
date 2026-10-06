@@ -30,7 +30,7 @@ a = Analysis(
         ('decky_loader/locales', 'decky_loader/locales'),
         ('decky_loader/static', 'decky_loader/static'),
     ] + copy_metadata('decky_loader'),
-    runtime_hooks=['build_config.py']
+    runtime_hooks=['build_config.py'],
     hiddenimports=['logging.handlers', 'sqlite3', 'http.server', 'socketserver', 'configparser', 'decky_plugin', 'decky'],
 )
 pyz = PYZ(a.pure, a.zipped_data)
