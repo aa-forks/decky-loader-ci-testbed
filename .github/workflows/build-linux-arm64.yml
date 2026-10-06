@@ -1,4 +1,4 @@
-name: Builder ARM64
+name: Builder (Linux, arm64)
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-linux.yml
+    uses: ./.github/workflows/build.yml
     with:
       arch: arm64
+      os: Linux
       artifact_name: PluginLoader-arm64

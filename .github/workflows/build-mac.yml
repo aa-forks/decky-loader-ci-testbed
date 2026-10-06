@@ -1,4 +1,4 @@
-name: Builder (Linux, x86_64)
+name: Builder (macOS)
 
 on:
   push:
@@ -9,6 +9,6 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     with:
-      arch: x86_64
-      os: Linux
-      artifact_name: PluginLoader
+      arch: arm64
+      os: macOS
+      artifact_name: PluginLoader-mac
