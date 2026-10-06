@@ -21,8 +21,8 @@ os.environ['DECKY_NOCONSOLE'] = {repr(noconsole_str)}
 """)
 
 name = "PluginLoader"
-if noconsole:
-    name += "_noconsole"
+# if noconsole:
+#    name += "_noconsole"
 
 a = Analysis(
     ['main.py'],

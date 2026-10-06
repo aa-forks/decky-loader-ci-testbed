@@ -32,8 +32,8 @@ jobs:
       (inputs.os == 'Linux' && inputs.arch == 'arm64' && 'ubuntu-26.04-arm') || 
       (inputs.os == 'Linux' && inputs.arch == 'x86_64' && 'ubuntu-26.04') ||
       (inputs.os == 'macOS' && inputs.arch == 'arm64' && 'xcode-27') || 
-      (inputs.os == 'Windows' && inputs.arch == 'arm64' && 'windows-11-vs2026-arm64') ||
-      (inputs.os == 'Windows' && inputs.arch == 'x86_64' && 'windows-2025-vs2026')
+      (inputs.os == 'Windows' && inputs.arch == 'arm64' && 'windows-11-arm64') ||
+      (inputs.os == 'Windows' && inputs.arch == 'x86_64' && 'windows-2025')
        }}
     defaults:
       run:
@@ -81,6 +81,8 @@ jobs:
       run: |
         poetry dynamic-versioning 
         DECKY_REPO="${{ github.repository }}" DECKY_BRANCH="${{ github.ref_name }}" ${{ inputs.noconsole == true && 'DECKY_NOCONSOLE=1 ' || '' }}pyinstaller pyinstaller.spec
+        echo Builds:
+        ls ./backend/dist
 
     - name: Upload package artifact ⬆️
       if: ${{ !env.ACT }}
