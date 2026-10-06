@@ -82,7 +82,7 @@ jobs:
         poetry dynamic-versioning 
         DECKY_REPO="${{ github.repository }}" DECKY_BRANCH="${{ github.ref_name }}" ${{ inputs.noconsole == true && 'DECKY_NOCONSOLE=1 ' || '' }}pyinstaller pyinstaller.spec
         echo Builds:
-        ls ./backend/dist
+        ls ./dist
 
     - name: Upload package artifact ⬆️
       if: ${{ !env.ACT }}
