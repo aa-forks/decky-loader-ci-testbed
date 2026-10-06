@@ -86,13 +86,13 @@ jobs:
 
     - name: Upload package artifact ⬆️
       if: ${{ !env.ACT }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ inputs.artifact_name }}
         path: ./backend/dist/${{ inputs.binary_name }}
 
     - name: Download package artifact locally
       if: ${{ env.ACT }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         path: ./backend/dist/${{ inputs.binary_name }}
